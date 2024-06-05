@@ -1,4 +1,6 @@
 #include <cstring>
+#include <mutex>
+#include <queue>
 #include <stdio.h>
 #include <stdlib.h>
 #include <netinet/in.h>
@@ -7,10 +9,14 @@
 #include <sys/socket.h>
 #include <string>
 #include <openssl/ssl.h>
+#include <unordered_set>
+#include "structs.h"
 
 #define MAX_RESPONSE_SIZE 32768
 
 using std::string;
+
+wikiData data;
 
 int main (int argc, char *argv[]) {
 	int sock = socket(AF_INET , SOCK_STREAM, IPPROTO_TCP);
